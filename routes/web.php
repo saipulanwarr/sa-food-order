@@ -23,3 +23,4 @@ require __DIR__.'/auth.php';
 Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'AdminLoginSubmit'])->name('admin.login_submit');
+Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
