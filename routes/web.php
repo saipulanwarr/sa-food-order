@@ -35,11 +35,12 @@ Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admi
 
 Route::middleware('client')->group(function(){
     Route::get('/client/dashboard', [ClientController::class, 'ClientDashboard'])->name('client.dashboard');
+    Route::get('/client/profile', [ClientController::class, 'ClientProfile'])->name('client.profile');
 });
-
 
 Route::get('/client/login', [ClientController::class, 'ClientLogin'])->name('client.login');
 Route::get('/client/register', [ClientController::class, 'ClientRegister'])->name('client.register');
 Route::post('/client/login', [ClientController::class, 'ClientLoginSubmit'])->name('client.login_submit');
 Route::post('/client/register', [ClientController::class, 'ClientRegisterSubmit'])->name('client.register.submit');
+Route::get('/client/logout', [ClientController::class, 'ClientLogout'])->name('client.logout');
 

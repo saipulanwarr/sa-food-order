@@ -63,4 +63,17 @@ class ClientController extends Controller
     public function ClientDashboard(){
         return view('client.index');
     }
+
+    public function ClientLogout(){
+        Auth::guard('client')->logout();
+
+        return redirect()->route('client.login')->with('success', 'Logout Successfully');
+    }
+
+    public function ClientProfile(){
+        $id = Auth::guard('client')->id();
+        $profileData = Client::find($id);
+
+        return view('client.client_profile', compact('profileData'));
+    }
 }
