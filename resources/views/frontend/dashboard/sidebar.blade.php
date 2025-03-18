@@ -19,11 +19,11 @@
        </div>
        <ul class="nav nav-tabs flex-column border-0 pt-4 pl-4 pb-4" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link {{ Route::currentRouteName() === 'dashboard' ? 'active' : '' }}"  href="#" role="tab" aria-controls="orders" aria-selected="true"><i class="icofont-food-cart"></i> Profile</a>
+            <a class="nav-link {{ Route::currentRouteName() === 'profile' ? 'active' : '' }}"  href="{{route('profile')}}" role="tab" aria-controls="orders" aria-selected="true"><i class="icofont-food-cart"></i> Profile</a>
          </li>
 
          <li class="nav-item">
-            <a class="nav-link {{ Route::currentRouteName() === 'change.password' ? 'active' : '' }}"  href="#" role="tab" aria-controls="orders" aria-selected="true"><i class="icofont-food-cart"></i> Change Password </a>
+            <a class="nav-link {{ Route::currentRouteName() === 'change.password' ? 'active' : '' }}"  href="{{route('change.password')}}" role="tab" aria-controls="orders" aria-selected="true"><i class="icofont-food-cart"></i> Change Password </a>
          </li>
 
          <li class="nav-item">
