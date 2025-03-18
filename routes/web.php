@@ -16,10 +16,12 @@ Route::get('/dashboard', function () {
     return view('frontend.dashboard.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/profile', function () {
+    return view('frontend.dashboard.profile');
+})->middleware(['auth', 'verified'])->name('profile');
+
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/profile/store', [UserController::class, 'ProfileStore'])->name('profile.store');
 });
 
 require __DIR__.'/auth.php';

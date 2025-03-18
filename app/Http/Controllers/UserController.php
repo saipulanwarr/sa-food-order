@@ -3,10 +3,53 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash; 
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class UserController extends Controller
 {
     public function Index(){
         return view('frontend.index');
+    }
+
+    public function ProfileStore(Request $request){
+        $id = Auth::user()->id;
+        $data = User::find($id);
+
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+        $data->address = $request->address;
+
+        $oldPhoto = $data->photo;
+
+        if($request->hasFile('photo')){
+            $file = $request->file('photo');
+            $filename = time().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('upload/user_images'), $filename);
+            $data->photo = $filename;
+
+            if($oldPhoto && $oldPhoto !== $filename){
+                $this->deleteOldImage($oldPhoto);
+            }
+        }
+
+        $data->save();
+
+        $notification = array(
+            'message' => 'Profile Updated Successfully',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    private function deleteOldImage(string $oldPhotoPath): void {
+        $fullPath = public_path('upload/user_images/'.$oldPhotoPath);
+        
+        if(file_exists($fullPath)){
+            unlink($fullPath);
+        }
     }
 }
