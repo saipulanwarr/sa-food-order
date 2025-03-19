@@ -30,7 +30,7 @@
                         {{-- @endif --}}
                         {{-- @if (Auth::guard('admin')->user()->can('category.add'))  --}}
                         <li>
-                            <a href="#">
+                            <a href="{{route('add.category')}}">
                                 <span data-key="t-chat">Add Category</span>
                             </a>
                         </li> 
