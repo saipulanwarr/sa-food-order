@@ -95,4 +95,19 @@ class CategoryController extends Controller
             unlink($fullPath);
         }
     }
+
+    public function DeleteCategory($id){
+        $item = Category::find($id);
+        $img = $item->image;
+        unlink($img);
+
+        Category::find($id)->delete();
+
+        $notification = array(
+            'message' => 'Category Deleted successfully',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
+    }
 }
