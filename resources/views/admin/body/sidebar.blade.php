@@ -46,7 +46,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li>
-                            <a href="#">
+                            <a href="{{route('all.city')}}">
                                 <span data-key="t-calendar">All City</span>
                             </a>
                         </li>
