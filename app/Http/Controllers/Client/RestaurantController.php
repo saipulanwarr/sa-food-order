@@ -9,6 +9,7 @@ use App\Models\City;
 use App\Models\Menu;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Gallery;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Carbon\Carbon;
 
@@ -258,5 +259,99 @@ class RestaurantController extends Controller
         $product->status = $request->status;
         $product->save();
         return response()->json(['success' => 'Status Change Successfully']);
+    }
+
+    public function AllGallery(){
+        $gallery = Gallery::latest()->get();
+        return view('client.backend.gallery.all_gallery', compact('gallery'));
+    } 
+
+    public function AddGallery(){ 
+        return view('client.backend.gallery.add_gallery' );
+    } 
+
+    public function StoreGallery(Request $request){
+
+        $images = $request->file('gallery_img');
+
+        foreach ($images as $gimg) {
+
+            $filename = time().'.'.$gimg->getClientOriginalExtension();
+            $gimg->move(public_path('upload/gallery'), $filename);
+            $save_url = 'upload/gallery/'.$filename;
+
+            Gallery::insert([
+                'client_id' => Auth::guard('client')->id(),
+                'gallery_img' => $save_url,
+            ]); 
+        } // end foreach
+
+        $notification = array(
+            'message' => 'Gallery Inserted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.gallery')->with($notification);
+    }
+
+    public function EditGallery($id){
+        $gallery = Gallery::find($id);
+        return view('client.backend.gallery.edit_gallery',compact('gallery'));
+    }
+
+    public function UpdateGallery(Request $request){
+
+        $gallery_id = $request->id;
+
+        if ($request->hasFile('gallery_img')) {
+
+            $image = $request->file('gallery_img');
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('upload/gallery'), $filename);
+            $save_url = 'upload/gallery/'.$filename;
+
+
+            $gallery = Gallery::find($gallery_id);
+            if ($gallery->gallery_img) {
+                $img = $gallery->gallery_img;
+                unlink($img);
+            }
+
+            $gallery->update([
+                'gallery_img' => $save_url,
+            ]);
+ 
+            $notification = array(
+                'message' => 'Menu Updated Successfully',
+                'alert-type' => 'success'
+            );
+    
+            return redirect()->route('all.gallery')->with($notification);
+
+        } else {
+
+            $notification = array(
+                'message' => 'No Image Selected for Update',
+                'alert-type' => 'warning'
+            );
+    
+            return redirect()->back()->with($notification); 
+        } 
+    }
+
+    public function DeleteGallery($id){
+        $item = Gallery::find($id);
+        $img = $item->gallery_img;
+        unlink($img);
+
+        Gallery::find($id)->delete();
+
+        $notification = array(
+            'message' => 'Gallery Delete Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
     }
 }

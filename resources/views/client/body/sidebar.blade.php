@@ -68,13 +68,13 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li>
-                            <a href="#">
+                            <a href="{{route('all.gallery')}}">
                                 <span data-key="t-calendar">All Gallery</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="#">
+                            <a href="{{route('add.gallery')}}">
                                 <span data-key="t-chat">Add Gallery</span>
                             </a>
                         </li> 
