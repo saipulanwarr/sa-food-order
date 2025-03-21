@@ -16,7 +16,9 @@ use Carbon\Carbon;
 class RestaurantController extends Controller
 {
     public function AllMenu(){
-        $menu = Menu::latest()->get();
+        $id = Auth::guard('client')->id();
+        $menu = Menu::where('client_id',$id)->orderBy('id','desc')->get();
+
         return view('client.backend.menu.all_menu', compact('menu'));
     } 
 
@@ -34,6 +36,7 @@ class RestaurantController extends Controller
 
             Menu::create([
                 'menu_name' => $request->menu_name,
+                'client_id' => Auth::guard('client')->id(),
                 'image' => $save_url, 
             ]);
         }
@@ -116,14 +119,16 @@ class RestaurantController extends Controller
     }
 
     public function AllProduct(){
-        $product = Product::latest()->get();
+        $id = Auth::guard('client')->id();
+        $product = Product::where('client_id',$id)->orderBy('id','desc')->get();
         return view('client.backend.product.all_product', compact('product'));
     }
 
     public function AddProduct(){
+        $id = Auth::guard('client')->id();
         $category = Category::latest()->get();
         $city = City::latest()->get();
-        $menu = Menu::latest()->get();
+        $menu = Menu::where('client_id',$id)->latest()->get();
         return view('client.backend.product.add_product', compact('category','city','menu'));
     } 
 
@@ -165,9 +170,10 @@ class RestaurantController extends Controller
     }
 
     public function EditProduct($id){
+        $id = Auth::guard('client')->id();
         $category = Category::latest()->get();
         $city = City::latest()->get();
-        $menu = Menu::latest()->get();
+        $menu = Menu::where('client_id',$id)->latest()->get();
         $product = Product::find($id);
         return view('client.backend.product.edit_product', compact('category','city','menu','product'));
     } 
