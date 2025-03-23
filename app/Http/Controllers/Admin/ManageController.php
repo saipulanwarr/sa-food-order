@@ -167,4 +167,21 @@ class ManageController extends Controller
         return redirect()->back()->with($notification);
 
     }
+
+    public function PendingRestaurant(){
+        $client = Client::where('status',0)->get();
+        return view('admin.backend.restaurant.pending_restaurant',compact('client')); 
+    }
+
+    public function ClientChangeStatus(Request $request){
+        $client = Client::find($request->client_id);
+        $client->status = $request->status;
+        $client->save();
+        return response()->json(['success' => 'Status Change Successfully']);
+    }
+
+    public function ApproveRestaurant(){
+        $client = Client::where('status',1)->get();
+        return view('admin.backend.restaurant.approve_restaurant',compact('client')); 
+    }
 }

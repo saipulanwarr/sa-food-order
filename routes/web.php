@@ -86,9 +86,16 @@ Route::middleware('admin')->group(function(){
         Route::post('/admin/update/product', 'AdminUpdateProduct')->name('admin.product.update');
         Route::get('/admin/delete/product/{id}', 'AdminDeleteProduct')->name('admin.delete.product');
     });
+
+    Route::controller(ManageController::class)->group(function(){
+        Route::get('/pending/restaurant', 'PendingRestaurant')->name('pending.restaurant'); 
+        Route::get('/clientchangeStatus', 'ClientChangeStatus'); 
+        Route::get('/approve/restaurant', 'ApproveRestaurant')->name('approve.restaurant'); 
+    });
+
 });
 
-Route::middleware(['client'])->group(function () {
+Route::middleware(['client', 'status'])->group(function () {
 
     Route::controller(RestaurantController::class)->group(function(){
         Route::get('/all/menu', 'AllMenu')->name('all.menu');
