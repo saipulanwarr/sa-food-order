@@ -104,7 +104,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li>
-                            <a href="#">
+                            <a href="{{route('all.banner')}}">
                                 <span data-key="t-calendar">All Banner </span>
                             </a>
                         </li> 

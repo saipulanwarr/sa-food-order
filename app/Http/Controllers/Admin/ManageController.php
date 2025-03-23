@@ -10,6 +10,7 @@ use App\Models\Menu;
 use App\Models\Client;
 use App\Models\Product;
 use App\Models\City;
+use App\Models\Banner;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Carbon\Carbon;
 use App\Models\Gallery;
@@ -183,5 +184,99 @@ class ManageController extends Controller
     public function ApproveRestaurant(){
         $client = Client::where('status',1)->get();
         return view('admin.backend.restaurant.approve_restaurant',compact('client')); 
+    }
+
+    public function AllBanner(){
+        $banner = Banner::latest()->get();
+        return view('admin.backend.banner.all_banner',compact('banner'));
+    }
+
+    public function BannerStore(Request $request){
+
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $filename = time().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('upload/banner'), $filename);
+            $save_url = 'upload/banner/'.$filename;
+    
+            Banner::create([
+                'url' => $request->url,
+                'image' => $save_url, 
+            ]); 
+        } 
+    
+        $notification = array(
+            'message' => 'Banner Inserted Successfully',
+            'alert-type' => 'success'
+        );
+    
+        return redirect()->back()->with($notification);    
+    }
+
+    public function EditBanner($id){
+        $banner = Banner::find($id);
+        if ($banner) {
+            $banner->image = asset($banner->image);
+        }
+        return response()->json($banner);
+    }
+
+    public function BannerUpdate(Request $request){
+
+        $banner_id = $request->banner_id;
+        $data = Banner::find($banner_id);
+
+        $oldPhoto = $data->image;
+
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $filename = time().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('upload/banner'), $filename);
+            $save_url = 'upload/banner/'.$filename;
+
+            if($oldPhoto && $oldPhoto !== $filename){
+                $this->deleteOldImage($oldPhoto);
+            }
+
+            Banner::find($banner_id)->update([
+                'url' => $request->url,
+                'image' => $save_url, 
+            ]); 
+            $notification = array(
+                'message' => 'Banner Updated Successfully',
+                'alert-type' => 'success'
+            );
+    
+            return redirect()->route('all.banner')->with($notification);
+
+        } else {
+
+            Banner::find($banner_id)->update([
+                'url' => $request->url, 
+            ]); 
+            $notification = array(
+                'message' => 'Banner Updated Successfully',
+                'alert-type' => 'success'
+            );
+    
+            return redirect()->route('all.banner')->with($notification);
+
+        }
+    }
+
+    public function DeleteBanner($id){
+        $item = Banner::find($id);
+        $img = $item->image;
+        unlink($img);
+
+        Banner::find($id)->delete();
+
+        $notification = array(
+            'message' => 'Banner Delete Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
     }
 }
