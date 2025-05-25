@@ -62,7 +62,7 @@
 
                                             <div class="mb-3">
                                                 <label class="form-label">Email</label>
-                                                <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email">
+                                                <input type="email" name="email" class="form-control" id="email" placeholder="client@gmail.com">
                                             </div>
                                             <div class="mb-3">
                                                 <div class="d-flex align-items-start">
@@ -77,7 +77,7 @@
                                                 </div>
                                                 
                                                 <div class="input-group auth-pass-inputgroup">
-                                                    <input type="password" name="password"  class="form-control" placeholder="Enter password" aria-label="Password" aria-describedby="password-addon">
+                                                    <input type="password" name="password"  class="form-control" placeholder="password123" aria-label="Password" aria-describedby="password-addon">
                                                     <button class="btn btn-light shadow-none ms-0" type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
                                                 </div>
                                             </div>

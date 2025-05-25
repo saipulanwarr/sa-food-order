@@ -46,11 +46,11 @@
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="form-label-group">
-                                    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address">
+                                    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="user@gmail.com">
                                     <label for="inputEmail">Email </label>
                                 </div>
                                 <div class="form-label-group">
-                                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
+                                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="password123">
                                     <label for="inputPassword">Password</label>
                                 </div>
                                 <div class="custom-control custom-checkbox mb-3">
@@ -63,15 +63,6 @@
                                 </div>
                             </form>
                            <hr class="my-4">
-                           <p class="text-center">LOGIN WITH</p>
-                           <div class="row">
-                              <div class="col pr-2">
-                                 <button class="btn pl-1 pr-1 btn-lg btn-google font-weight-normal text-white btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Google</button>
-                              </div>
-                              <div class="col pl-2">
-                                 <button class="btn pl-1 pr-1 btn-lg btn-facebook font-weight-normal text-white btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Facebook</button>
-                              </div>
-                           </div>
                         </div>
                      </div>
                   </div>
