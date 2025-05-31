@@ -545,7 +545,7 @@
                             <img class="img-fluid float-left mr-3" src="{{ asset('frontend/img/earn-score-icon.png') }}">
                             <h6 class="pt-0 text-primary mb-1 font-weight-bold">OFFER</h6>
 
-                            {{-- <pre>{{ print_r(Session::get('coupon'), true) }}</pre> --}}
+                            <pre>{{ print_r(Session::get('coupon'), true) }}</pre>
 
                             @if ($coupon == null)
                                 <p class="mb-0">No Coupon is Available </p>
