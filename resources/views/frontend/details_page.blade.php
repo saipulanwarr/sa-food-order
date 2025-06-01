@@ -664,7 +664,7 @@
 
                         </div>
 
-                        <a href="#" class="btn btn-success btn-block btn-lg">Checkout <i
+                        <a href="{{ route('checkout') }}" class="btn btn-success btn-block btn-lg">Checkout <i
                                 class="icofont-long-arrow-right"></i></a>
                     </div>
 
