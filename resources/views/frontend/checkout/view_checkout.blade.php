@@ -1,13 +1,12 @@
 @extends('frontend.dashboard.dashboard')
 @section('dashboard')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <style>
         /**
-       * The CSS shown here will not be introduced in the Quickstart guide, but shows
-       * how you can use CSS to style your Element's container.
-       */
+           * The CSS shown here will not be introduced in the Quickstart guide, but shows
+           * how you can use CSS to style your Element's container.
+           */
         .StripeElement {
             box-sizing: border-box;
             height: 40px;
@@ -309,7 +308,7 @@
         // Create a Stripe client.
         var stripe = Stripe(
             'pk_test_51Oml5cGAwoXiNtjJgPPyQngDj9WTjawya4zCsqTn3LPFhl4VvLZZJIh9fW9wqVweFYC5f0YEb9zjUqRpXbkEKT7T00eU1xQvjp'
-            );
+        );
         // Create an instance of Elements.
         var elements = stripe.elements();
         // Custom styling can be passed to options when creating an Element.
