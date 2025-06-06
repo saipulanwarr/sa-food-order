@@ -8,6 +8,7 @@ use App\Models\Client;
 use App\Models\Menu;
 use App\Models\Gallery;
 use App\Models\Wishlist;
+use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
@@ -20,7 +21,24 @@ class HomeController extends Controller
         });
         $gallerys = Gallery::where('client_id',$id)->get();
 
-        return view('frontend.details_page',compact('client', 'menus', 'gallerys'));
+        $reviews = Review::where('client_id',$client->id)->get();
+        $totalReviews = $reviews->count();
+        $ratingSum = $reviews->sum('rating');
+        $averageRating = $totalReviews > 0 ? $ratingSum / $totalReviews : 0;
+        $roundedAverageRating = round($averageRating, 1);
+     
+        $ratingCounts = [
+            '5' => $reviews->where('rating',5)->count(),
+            '4' => $reviews->where('rating',4)->count(),
+            '3' => $reviews->where('rating',3)->count(),
+            '2' => $reviews->where('rating',2)->count(),
+            '1' => $reviews->where('rating',1)->count(),
+        ];
+        $ratingPercentages =  array_map(function ($count) use ($totalReviews){
+            return $totalReviews > 0 ? ($count / $totalReviews) * 100 : 0;
+        },$ratingCounts);
+
+        return view('frontend.details_page',compact('client','menus','gallerys','reviews','roundedAverageRating','totalReviews','ratingCounts','ratingPercentages'));
     }
 
     public function AddWishList(Request $request, $id){

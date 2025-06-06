@@ -361,33 +361,38 @@
                                 </div>
                                 <div class="bg-white rounded shadow-sm p-4 mb-4 clearfix graph-star-rating">
                                     <h5 class="mb-4">Ratings and Reviews</h5>
-                                    {{-- <div class="graph-star-rating-header">
-         <div class="star-rating">
-            @for ($i = 1; $i <= 5; $i++)
-            <a href="#"><i class="icofont-ui-rating {{ $i <= round($roundedAverageRating) ? 'active' : ''}}"></i></a>
-            @endfor
-              <b class="text-black ml-2">{{ $totalReviews }}</b>
-         </div>
-         <p class="text-black mb-4 mt-2">Rated {{$roundedAverageRating}} out of 5</p>
-      </div> --}}
+                                    <div class="graph-star-rating-header">
+                                        <div class="star-rating">
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                <a href="#"><i
+                                                        class="icofont-ui-rating {{ $i <= round($roundedAverageRating) ? 'active' : '' }}"></i></a>
+                                            @endfor
+                                            <b class="text-black ml-2">{{ $totalReviews }}</b>
+                                        </div>
+                                        <p class="text-black mb-4 mt-2">Rated {{ $roundedAverageRating }} out of 5</p>
+                                    </div>
 
                                     <div class="graph-star-rating-body">
 
-                                        {{-- @foreach ($ratingCounts as $star => $count) 
-         <div class="rating-list">
-            <div class="rating-list-left text-black">
-               {{ $star }} Star
-            </div>
-            <div class="rating-list-center">
-               <div class="progress">
-                  <div style="width: {{ $ratingPercentages[$star] }}%" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar bg-primary">
-                     <span class="sr-only">{{ $ratingPercentages[$star] }}% Complete (danger)</span>
-                  </div>
-               </div>
-            </div>
-            <div class="rating-list-right text-black">{{ number_format($ratingPercentages[$star],2) }}%</div>
-         </div>
-         @endforeach --}}
+                                        @foreach ($ratingCounts as $star => $count)
+                                            <div class="rating-list">
+                                                <div class="rating-list-left text-black">
+                                                    {{ $star }} Star
+                                                </div>
+                                                <div class="rating-list-center">
+                                                    <div class="progress">
+                                                        <div style="width: {{ $ratingPercentages[$star] }}%"
+                                                            aria-valuemax="5" aria-valuemin="0" aria-valuenow="5"
+                                                            role="progressbar" class="progress-bar bg-primary">
+                                                            <span class="sr-only">{{ $ratingPercentages[$star] }}%
+                                                                Complete (danger)</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="rating-list-right text-black">
+                                                    {{ number_format($ratingPercentages[$star], 2) }}%</div>
+                                            </div>
+                                        @endforeach
 
                                     </div>
 
@@ -409,44 +414,56 @@
                                             color: #dd646e;
                                         }
                                     </style>
-                                    {{-- @php
-      $reviews = App\Models\Review::where('client_id',$client->id)->where('status',1)->latest()->limit(5)->get();
-   @endphp   
-      
-      @foreach ($reviews as $review)
-         
-      <div class="reviews-members pt-4 pb-4">
-         <div class="media">
-            <a href="#"><img alt="Generic placeholder image" src="{{ (!empty($review->user->photo)) ? url('upload/user_images/'.$review->user->photo) : url('upload/no_image.jpg') }}" class="mr-3 rounded-pill"></a>
-            <div class="media-body">
-               <div class="reviews-members-header">
-                  <span class="star-rating float-right">
-                    @php
-                       $rating = $review->rating ?? 0;
-                    @endphp 
-                   @for ($i = 1; $i <= 5; $i++)
-                     @if ($i <= $rating)
-                     <a href="#"><i class="icofont-ui-rating active"></i></a> 
-                     @else
-                     <a href="#"><i class="icofont-ui-rating"></i></a>
-                     @endif   
-                  @endfor 
-                  </span>
-                  <h6 class="mb-1"><a class="text-black" href="#">{{ $review->user->name }}</a></h6>
-                  <p class="text-gray"> {{ Carbon\Carbon::parse($review->created_at)->diffForHumans() }} </p>
-               </div>
-               <div class="reviews-members-body">
-                  <p> {{ $review->comment }} </p>
-               </div>
-               <div class="reviews-members-footer">
-                  <a class="total-like" href="#"><i class="icofont-thumbs-up"></i> 856M</a> <a class="total-like" href="#"><i class="icofont-thumbs-down"></i> 158K</a> 
-                  
-               </div>
-            </div>
-         </div>
-      </div>
+                                    @php
+                                        $reviews = App\Models\Review::where('client_id', $client->id)
+                                            ->where('status', 1)
+                                            ->latest()
+                                            ->limit(5)
+                                            ->get();
+                                    @endphp
 
-      @endforeach --}}
+                                    @foreach ($reviews as $review)
+                                        <div class="reviews-members pt-4 pb-4">
+                                            <div class="media">
+                                                <a href="#"><img alt="Generic placeholder image"
+                                                        src="{{ !empty($review->user->photo) ? url('upload/user_images/' . $review->user->photo) : url('upload/no_image.jpg') }}"
+                                                        class="mr-3 rounded-pill"></a>
+                                                <div class="media-body">
+                                                    <div class="reviews-members-header">
+                                                        <span class="star-rating float-right">
+                                                            @php
+                                                                $rating = $review->rating ?? 0;
+                                                            @endphp
+                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                @if ($i <= $rating)
+                                                                    <a href="#"><i
+                                                                            class="icofont-ui-rating active"></i></a>
+                                                                @else
+                                                                    <a href="#"><i
+                                                                            class="icofont-ui-rating"></i></a>
+                                                                @endif
+                                                            @endfor
+                                                        </span>
+                                                        <h6 class="mb-1"><a class="text-black"
+                                                                href="#">{{ $review->user->name }}</a></h6>
+                                                        <p class="text-gray">
+                                                            {{ Carbon\Carbon::parse($review->created_at)->diffForHumans() }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="reviews-members-body">
+                                                        <p> {{ $review->comment }} </p>
+                                                    </div>
+                                                    <div class="reviews-members-footer">
+                                                        <a class="total-like" href="#"><i
+                                                                class="icofont-thumbs-up"></i> 856M</a> <a
+                                                            class="total-like" href="#"><i
+                                                                class="icofont-thumbs-down"></i> 158K</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
 
                                     <hr>
 
@@ -479,7 +496,7 @@
 
                                         <h5 class="mb-4">Leave Comment</h5>
                                         <p class="mb-2">Rate the Place</p>
-                                        <form method="post" action="#">
+                                        <form method="post" action="{{ route('store.review') }}">
                                             @csrf
                                             <input type="hidden" name="client_id" value="{{ $client->id }}">
 
@@ -545,7 +562,7 @@
                             <img class="img-fluid float-left mr-3" src="{{ asset('frontend/img/earn-score-icon.png') }}">
                             <h6 class="pt-0 text-primary mb-1 font-weight-bold">OFFER</h6>
 
-                            <pre>{{ print_r(Session::get('coupon'), true) }}</pre>
+                            {{-- <pre>{{ print_r(Session::get('coupon'), true) }}</pre> --}}
 
                             @if ($coupon == null)
                                 <p class="mb-0">No Coupon is Available </p>
