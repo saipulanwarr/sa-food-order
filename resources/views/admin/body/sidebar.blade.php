@@ -163,8 +163,9 @@
                         <span data-key="t-ui-elements">Manage Review</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" data-key="t-lightbox">Pending Review</a></li>
-                        <li><a href="#" data-key="t-range-slider">Approve Review</a></li>
+                        <li><a href="{{ route('admin.pending.review') }}" data-key="t-lightbox">Pending Review</a></li>
+                        <li><a href="{{ route('admin.approve.review') }}" data-key="t-range-slider">Approve Review</a>
+                        </li>
 
                     </ul>
                 </li>

@@ -151,6 +151,13 @@ Route::middleware('admin')->group(function(){
         Route::post('/admin/search/byyear', 'AminSearchByYear')->name('admin.search.byyear');
     });
 
+    Route::controller(ReviewController::class)->group(function(){
+        Route::get('/admin/pending/review', 'AdminPendingReview')->name('admin.pending.review');
+        Route::get('/admin/approve/review', 'AdminApproveReview')->name('admin.approve.review');
+        Route::get('/reviewchangeStatus', 'ReviewChangeStatus');   
+        
+    });
+
 });
 
 Route::middleware(['client', 'status'])->group(function () {
