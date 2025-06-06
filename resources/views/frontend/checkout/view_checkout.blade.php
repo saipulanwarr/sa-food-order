@@ -4,9 +4,9 @@
 
     <style>
         /**
-           * The CSS shown here will not be introduced in the Quickstart guide, but shows
-           * how you can use CSS to style your Element's container.
-           */
+               * The CSS shown here will not be introduced in the Quickstart guide, but shows
+               * how you can use CSS to style your Element's container.
+               */
         .StripeElement {
             box-sizing: border-box;
             height: 40px;
@@ -148,14 +148,13 @@
                                                         class="icofont-discover-alt"></i> <i class="icofont-jcb-alt"></i>
                                                 </span>
                                             </p>
-                                            <form action="{{ route('stripe_order') }}" method="post" id="payment-form">
+                                            <form action="#" method="post" id="payment-form">
                                                 @csrf
                                                 <label for="card-element"></label>
                                                 <input type="hidden" name="name" value="{{ Auth::user()->name }}">
                                                 <input type="hidden" name="email" value="{{ Auth::user()->email }}">
                                                 <input type="hidden" name="phone" value="{{ Auth::user()->phone }}">
-                                                <input type="hidden" name="address"
-                                                    value="{{ Auth::user()->address }}">
+                                                <input type="hidden" name="address" value="{{ Auth::user()->address }}">
                                                 <div id="card-element">
 
                                                 </div>
