@@ -137,7 +137,7 @@
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
                             <li>
-                                <a href="#">
+                                <a href="{{ route('client.all.reviews') }}">
                                     <span data-key="t-calendar">All Reviews</span>
                                 </a>
                             </li>

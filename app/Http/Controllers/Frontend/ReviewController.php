@@ -57,4 +57,11 @@ class ReviewController extends Controller
         $review->save();
         return response()->json(['success' => 'Status Change Successfully']);
     }
+
+    public function ClientAllReviews(){
+        $id = Auth::guard('client')->id();
+        $allreviews = Review::where('status',1)->where('client_id',$id)->orderBy('id','desc')->get();
+        return view('client.backend.review.view_all_review',compact('allreviews'));
+
+    }
 }
