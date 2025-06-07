@@ -194,8 +194,10 @@
                     <span data-key="t-ui-elements">Manage Admin</span>
                 </a>
                 <ul class="sub-menu" aria-expanded="false">
-                    <li><a href="#" data-key="t-lightbox">All Admin</a></li>
-                    <li><a href="#" data-key="t-range-slider">Add Admin</a></li>
+                    <li><a href="{{ route('all.admin') }}" data-key="t-lightbox">All Admin</a></li>
+                    <li><a href="{{ route('all.admin') }}" data-key="t-range-slider">Add Admin</a></li>
+
+
                 </ul>
             </li>
             </ul>
