@@ -179,6 +179,10 @@
                         <li><a href="{{ route('all.permission') }}" data-key="t-lightbox">All Permission</a></li>
                         <li><a href="{{ route('admin.approve.review') }}" data-key="t-range-slider">Approve Review</a>
                         <li><a href="{{ route('all.roles') }}" data-key="t-range-slider">All Roles</a></li>
+                        <li><a href="{{ route('add.roles.permission') }}" data-key="t-range-slider">Role In
+                                Permission</a></li>
+                        <li><a href="{{ route('all.roles.permission') }}" data-key="t-range-slider">All Role In
+                                Permission</a></li>
                 </li>
 
             </ul>

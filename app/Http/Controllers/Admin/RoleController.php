@@ -8,6 +8,8 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Exports\PermissionExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Admin;
+use DB;
 
 class RoleController extends Controller
 {
@@ -139,5 +141,38 @@ class RoleController extends Controller
         ); 
         return redirect()->back()->with($notification);
      }
+
+     public function AddRolesPermission(){
+        $roles = Role::all();
+        $permissions = Permission::all();
+        $permission_groups = Admin::getpermissionGroups();
+        
+        return view('admin.backend.pages.rolesetup.add_roles_permission',compact('roles','permissions','permission_groups'));
+    }
+
+    public function RolePermissionStore(Request $request){
+
+        $data = array();
+        $permissions = $request->permission;
+
+        foreach ($permissions as $key => $item) {
+           $data['role_id'] = $request->role_id;
+           $data['permission_id'] = $item;
+
+           DB::table('role_has_permissions')->insert($data);
+        } //end foreach
+
+        $notification = array(
+            'message' => 'Role Permission Added Successfully',
+            'alert-type' => 'success'
+        ); 
+        return redirect()->route('all.roles.permission')->with($notification);
+
+    }
+
+    public function AllRolesPermission(){
+        $roles = Role::all();
+        return view('admin.backend.pages.rolesetup.all_roles_permission',compact('roles'));
+    }
     
  }
