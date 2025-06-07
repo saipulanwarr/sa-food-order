@@ -17,8 +17,7 @@
                                 <a href="{{ route('import.permission') }}"
                                     class="btn btn-warning waves-effect waves-light">Import</a>&nbsp;&nbsp;
 
-                                <a href="{{ route('add.permission') }}"
-                                    class="btn btn-danger waves-effect waves-light">Export</a>
+                                <a href="{{ route('export') }}" class="btn btn-danger waves-effect waves-light">Export</a>
                             </ol>
                         </div>
 
