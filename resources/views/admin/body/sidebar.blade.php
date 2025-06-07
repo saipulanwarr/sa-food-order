@@ -176,10 +176,9 @@
                         <span data-key="t-ui-elements">Role & Permission</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" data-key="t-lightbox">All Permission</a></li>
-                        <li><a href="#" data-key="t-range-slider">All Roles</a></li>
-                        <li><a href="#" data-key="t-range-slider">Role In Permission</a></li>
-                        <li><a href="#" data-key="t-range-slider">All Role In Permission</a></li>
+                        <li><a href="{{ route('all.permission') }}" data-key="t-lightbox">All Permission</a></li>
+                        <li><a href="{{ route('admin.approve.review') }}" data-key="t-range-slider">Approve Review</a>
+                        </li>
 
                     </ul>
                 </li>
