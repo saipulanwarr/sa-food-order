@@ -178,21 +178,22 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('all.permission') }}" data-key="t-lightbox">All Permission</a></li>
                         <li><a href="{{ route('admin.approve.review') }}" data-key="t-range-slider">Approve Review</a>
-                        </li>
-
-                    </ul>
+                        <li><a href="{{ route('all.roles') }}" data-key="t-range-slider">All Roles</a></li>
                 </li>
 
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow">
-                        <i data-feather="gift"></i>
-                        <span data-key="t-ui-elements">Manage Admin</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#" data-key="t-lightbox">All Admin</a></li>
-                        <li><a href="#" data-key="t-range-slider">Add Admin</a></li>
-                    </ul>
-                </li>
+            </ul>
+            </li>
+
+            <li>
+                <a href="javascript: void(0);" class="has-arrow">
+                    <i data-feather="gift"></i>
+                    <span data-key="t-ui-elements">Manage Admin</span>
+                </a>
+                <ul class="sub-menu" aria-expanded="false">
+                    <li><a href="#" data-key="t-lightbox">All Admin</a></li>
+                    <li><a href="#" data-key="t-range-slider">Add Admin</a></li>
+                </ul>
+            </li>
             </ul>
 
             <div class="card sidebar-alert border-0 text-center mx-4 mb-0 mt-5">

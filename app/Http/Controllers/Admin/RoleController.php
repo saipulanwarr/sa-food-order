@@ -78,4 +78,66 @@ class RoleController extends Controller
     public function Export(){
         return Excel::download(new PermissionExport, 'permission.xlsx');
     }
-}
+
+    public function AllRoles(){
+        $roles = Role::all();
+        return view('admin.backend.pages.role.all_roles',compact('roles'));
+    }
+    //End Method
+
+    public function AddRoles(){
+        return view('admin.backend.pages.role.add_roles');
+    }
+        //End Method
+
+    public function StoreRoles(Request $request){
+       
+        Role::create([
+            'name' => $request->name,
+            'guard_name' => 'admin'
+        ]);
+
+        $notification = array(
+            'message' => 'Role Creted Successfully',
+            'alert-type' => 'success'
+        ); 
+        return redirect()->route('all.roles')->with($notification);
+
+    }
+
+
+    public function EditRoles($id){
+        
+        $roles = Role::find($id);
+        return view('admin.backend.pages.role.edit_roles',compact('roles'));
+
+     }
+      //End Method
+
+    public function UpdateRoles(Request $request){
+       $role_id = $request->id;
+
+        Role::find($role_id)->update([
+            'name' => $request->name 
+        ]);
+
+        $notification = array(
+            'message' => 'Role Updated Successfully',
+            'alert-type' => 'success'
+        ); 
+        return redirect()->route('all.roles')->with($notification);
+
+    }
+     //End Method
+
+     public function DeleteRoles($id){
+
+        Role::find($id)->delete();
+        $notification = array(
+            'message' => 'Role Deleted Successfully',
+            'alert-type' => 'success'
+        ); 
+        return redirect()->back()->with($notification);
+     }
+    
+ }
